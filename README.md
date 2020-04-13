@@ -1,5 +1,15 @@
 # Toolpic Core
-Toolpic core software of Fridays For Future Germany.
+Core processor of Toolpic, developed for Fridays For Future. This is not the whole project but the core library, that is used by the client and the rendering server.
+
+## Disclaimer
+
+Before you are able, to understand *ToolpicCore* and the related software around such as the default client or any rendering system, you should be familiar with the following:
+* [VueJS](https://vuejs.org/v2/guide/)
+* [Vue Components](https://v1.vuejs.org/guide/components.html)
+* [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
+* [Webpack](https://webpack.js.org)
+
+
 
 ## Install
 
@@ -9,23 +19,19 @@ $ npm install toolpic
 
 # Structure
 
-The `Rendering` engine and the `Components` object are part of the module namespace.
 
-
-**Please note, that the Toolpic is a UMD module, that is made to be used within ab environment that supports UMD modules**
-**If you want to use the toolpic indepently as a standalone system, you have to import the module into global scope using a** `<script>` **tag**
+**Please note, that the Toolpic is an UMD module, that is made to be used within an environment that supports UMD modules**
+**If you want to use toolpic independently as a standalone system, you have to import the module into global scope using a** `<script>` **tag**
 ### Example
 ```javascript
-import * as Toolpic from 'Toolpic'
+import * as Toolpic from 'toolpic';
 
-console.log(Toolpic.Renderer);
-console.log(Toolpic.Components);
-
+console.log(Toolpic);
 ```
 
-## Import as global variable
+## Import into global scope
 
-To import the toolpic straight as a bundled es2015 module within your global scope, use the `toolpic.js` file within the `lib` folder or just *jsdelivr*'s npm cdn.
+To import Toolpic straight into your global scope, use the `toolpic.js` file within the `lib` folder or just *jsdelivr*'s npm cdn.
 
 ```html
 <head>
@@ -33,13 +39,13 @@ To import the toolpic straight as a bundled es2015 module within your global sco
 </head>
 ```
 
-**Disclaimer:** The toolpic software is divided into a lot of projects such as this *toolpic core* but also a (server) rendering API, a server implementation and, of course, a client implementation. The default client implementation is the one of Fridays For Future Germany. Because the way template modules are designed needs to explain a lot of things, this documentation also explains some things that are not really part of *toolpic core* but are the recommended way how to use it.
+**Disclaimer 2:** The toolpic project is divided into a lot of projects such as this *toolpic core* but also a (server) rendering API, a server implementation and, of course, a client implementation. The default client implementation is the one, we've developed for Fridays For Future. Because the way, template modules are designed, is related to some other parts of the toolpic project, this documentation also explains these parts even if they are not a part of *toolpic core*. But they are reproduceable and the recommended way how to use it even if you implement your own use case.
 
 # Toolpic Core
 
 ```javascript
 // Import Renderer
-import Toolpic from 'toolpic'
+import Toolpic from 'toolpic';
 
 // 'templateModuleNameSpace' is an imported object containing a pre-compiled VueComponent and some additional properties
 
@@ -48,20 +54,20 @@ const render = new Toolpic(templateModuleNameSpace);
 ```
 
 The *toolpic core* system works with pre-compiled *VueComponents* that can be rendered using the `render()` function. So, note:
-* Every template **needs to be** a valid *VueComponent* that is pre-compiled.
-* Because we're normally using `.vue` Single-File-Components as templates, the template object looks like a *ModuleNameSpaceObject* and the component lives on the `default` property.
+* Each template **needs to be** a valid *VueComponent* that is pre-compiled.
+* Because we're normally using `.vue` *Single File Components* as templates, the template object looks like a *ModuleNameSpaceObject* and the component lives on the `default` property.
 
 ## API
 
-With your constructed `Toolpic` instance you can do certain things, that are more less controlling the *VueComponent* behind it. To understand the behaviour of some methods (e.g. `seekAnimations()`) it is useful to read the whole documentation including the part abut the structure of  your templates.
+With your constructed `Toolpic` instance you can do certain things, that are more less controlling the *VueComponent* behind it. To understand the behaviour of some methods (e.g. `seekAnimations()`) it is useful to read the whole documentation including the part about structuring a templates.
 
 ### `data`
 
-The `data` controller is a proxy that connects your instance straight to the dat controller of the *VueComponent* behind.
+The `data` controller is a proxy that connects your instance straight to the data controller of the *VueComponent* behind.
 
 #### [GET] `data`
 
-If you are **getting** any property within `data` such as `data.foo`, you get an object containing the requested `key` and the `value`.
+If you are **getting** any property within `data` such as `data.foo`, you get an object containing the requested `key` and the `__value`.
 
 E.g, the return of `render.data.foo` would be:
 
@@ -74,16 +80,16 @@ E.g, the return of `render.data.foo` would be:
 
 #### [SET] `data`
 
-To set a property, just do as you would do normally with objects:
+To set any property, just do as you would do normally with objects:
 ```javascript
 render.data.foo = 'bar';
 ```
 
 ### `dataset`
 
-To get or set the data to the VueComponent's data controller, you also could use `dataset`. When **getting** `dataset` object returns all properties within the VueComponent's data controller as a new assigned object.
+To get or set the data to the *VueComponent*'s data controller, you also could use `dataset`. When **getting** `dataset` object returns all properties within the VueComponent's data controller as a new assigned object.
 
-If you are **setingt** `dataset`, all properties will hard overwrite the existing ones within the VueComponent's data controller.
+If you are **setting** `dataset`, all properties will hardly overwrite the existing ones within the *VueComponent*'s data controller.
 
 
 ```javascript
@@ -140,11 +146,11 @@ This method is used to seek alls animations to a given timestamp.
 
 ## Directives
 
-Theoretically you could set every possible mathematically relation just using the properties and **Vue.js**. **But** sometimes this would need expressions that are too long to handle. Some of these situations are solved by *Toolpic Vue Directives*. These are directives that bundled with `toolpic` and are provided by the `SuperTemplate` which you should use to extend from by default.
+Theoretically you could set every possible mathematically relation just using the properties and **Vue.js**. **But** sometimes this would need expressions that are too long to handle. Some of these situations are solved by *Toolpic Vue Directives*. These are directives that bundled with `toolpic` and provided by `SuperTemplate` which you should use to extend from by default.
 
-**Remeber:** Because each template is a valid *VueComponent*, you could also ship your own directives just for one single component.
+**Remember:** Because each template is a valid *VueComponent*, you could also ship specific directives or custom components just for one single component.
 
-Anyway, the *Toolpic Vue Directives* also can be imported manually from the `toolpic` module:
+Anyway, the *Toolpic Vue Directives* also can be imported manually from `toolpic` module:
 ```javascript
 import { VueDirectives } from 'toolpic';
 ```
@@ -172,9 +178,9 @@ This is very cool to use if you have an element that has a dynamic size, you do 
 This positioning directive will translate the element relative to its own boundings to an absolute position within the graphic. Using this directive makes it possible, to originate any element dynamically related to its size in real-time.
 
 ```xml
-<g v-pos data-rel="0.5 0.5" v-bind:data-pos="600 600">
+<g v-pos data-rel="0.5 0.5" data-pos="600 600">
   <!--
-    Center of <g> (0.5,0.5) will be at 600,600
+    Center of <g> (0.5,0.5) will be at 600,600 (absolute position in view box)
   -->
 </g>
 ```
@@ -189,11 +195,13 @@ Often, an image has to fit into a rect as `background-size: cover` would normall
 
 The value of `v-scaleimage` is the position of the image relative to its own size. It is a value between `-1` and `1` (`-1` = 100% left or top and `1` 100% right or bottom). The `transform-origin` should always be at center because, `transform` methods are used to scale and fit the image.
 
+**Note**: Because the directive is just scaling the image up, it **is not** cropped by default. Depending on the use case, a *mask* or *clip-path* cropping the image would be nice.
+
 ## Toolpic Custom Components
 
-Some other routines are solved with *Toolpic Vue Custom Components*. As the directives, they are shipped trough the `toolpic` core system too and are provided by the `SuperTemplate` which you should use to extend from by default.
+Some other routines are solved with *Toolpic Vue Custom Components*. As the directives, they are shipped trough the `toolpic` core system too. They also are provided by `SuperTemplate` which you should use to extend from by default.
 
-Anyway, the *Toolpic Vue Custom Components* also can be imported manually from the `toolpic` module:
+Anyway, the *Toolpic Vue Custom Components* also can be imported manually from `toolpic` module:
 ```javascript
 import { VueComponents } from 'toolpic';
 ```
@@ -219,9 +227,9 @@ To automate this routine, you can use the `<multiline-text>` component. Here, yo
 
 ## Toolpic Helpers
 
-To control data in a routine way, you can use some custom methods that can be accessed within the Vue environment just as the directives or the custom components, there are *Toolpic Vue Helpers*. Auch as *Toolpic Vue Custom Components* and *Toolpic Vue Directives* they are also provided by the `SuperTemplate` which you should use to extend from by default.
+To control data in a routine way, you can use some custom methods that can be accessed within the Vue environment just as the directives or the custom components, there are *Toolpic Vue Helpers*. Such as *Toolpic Vue Custom Components* and *Toolpic Vue Directives*, they are also provided by `SuperTemplate` which you should use to extend from by default.
 
-Anyway, the *Toolpic Vue Helpers* also can be imported manually from the `toolpic` module:
+Anyway, the *Toolpic Vue Helpers* also can be imported manually from `toolpic` module:
 ```javascript
 import { VueHelpers } from 'toolpic';
 ```
@@ -237,11 +245,11 @@ textToMultilineFormat('This is a very long text that is just written down withou
 1. `String` that should be formatted to the given ratio (e.g. `1`)
 2. Ratio the text has to be formatted to
 3. *Chars per line*: Value about the average ratio of each char in the used font (e.g. `0.3` - `0.4`). This depends to the font and is just an average value.
-4. Boolean wether a more correct algorithm should be used. Just use `false` if this seems to be to slow when using `true`
+4. Boolean value, wether a more correct algorithm should be used. Just use `false` if it seems to be to slow when using `true`
 
 ## Template Structure
 
-**Discalimer**: What you are doing at this point is not just a part of *toolpic core* (this npm module) but some paradigms are moreless best-practice that are implemented within the default client (Fridays For Future). Because you can program any client using the *toolpic core*, you also could implement your completely own solution for templating (the template sjust need to be valid VueComponents) or a lot of things else.
+**Disclaimer**: What you are doing at this point is not just a part of *toolpic core* (this npm module) but some paradigms are moreless best-practice that are implemented within the default client (Fridays For Future). Because you can program any client using the *toolpic core*, you also could implement your completely own solution for templating (the template sjust need to be valid VueComponents) or a lot of things else.
 
 A pre-compiled template that can be given as argument to `Toolpic` looks like the following:
 
@@ -492,9 +500,44 @@ Our Field Component could look like the following (`.vue` SFC):
 
 Yes, this modular structure is maybe a little bit confusing. If you are not completely understanding the workflow and the dependencies:
 * Have a look at Vue.js offical documentation: [Vue Basics](https://vuejs.org/v2/guide/), [Vue Components](https://v1.vuejs.org/guide/components.html), [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
-* Have a look at the some templates within ur FridaysForFuture Toolpic client (recommended). The `.vue` files there will explain a lot own their own.
+* Have a look at some templates within ur FridaysForFuture Toolpic client (recommended). The `.vue` files there will explain a lot own their own.
 * Ask us
 
 ### Animate a video
 
 To animate a video, you need to return an array containing **animejs** instances within the `__animate()` function you can define within `methods` object in your template. To access elements within the template you should use Vue's `ref` attribute.
+
+A template component that exports an `__animate()` function would look like this:
+
+```javascript
+import animejs from 'animejs';
+
+export default {
+  data() {
+    return {
+      // Any data to return
+    }
+  },
+  methods: {
+    __animate() {
+      const instance1 = animejs({
+          // This reference should be set by the template 
+          targets: this.$refs.element1,
+          keyframes: [
+            {
+              opacity: 1,
+              scale: 1
+            }
+          ],
+          duration: 1500,
+          autoplay: true,
+          easing: 'easeInOutQuad'
+        });
+
+        return [
+          instance1
+        ];
+    }
+  }
+}
+```
