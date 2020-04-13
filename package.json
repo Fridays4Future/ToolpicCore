@@ -1,0 +1,32 @@
+{
+  "name": "toolpic",
+  "version": "0.5.3",
+  "description": "Toolpic core",
+  "main": "lib/toolpic.esm.js",
+  "scripts": {
+    "build": "rm -r lib & webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.4.2",
+    "file-loader": "^6.0.0",
+    "style-loader": "^1.1.3",
+    "to-string-loader": "^1.1.6",
+    "vue-loader": "^15.9.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "keywords": [
+    "toolpic",
+    "core"
+  ],
+  "author": "Maurice Conrad",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
+}
