@@ -304,7 +304,7 @@ The `height` is used to specify the height of any template and while the server 
 #### `type`
 
 The `type` is mostly used for display purposes and specifies what kind of `format`'s are available.
-The value currently can be `image` or `video`.
+The value can be `image` or `video`.
 
 #### `format`
 
