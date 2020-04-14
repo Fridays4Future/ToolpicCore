@@ -1,4 +1,4 @@
-behavior# Toolpic Core
+# Toolpic Core
 Core processor of Toolpic, developed for Fridays For Future. This is not the whole project but the core library, that is used by the client and the rendering server.
 
 ## Disclaimer
