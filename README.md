@@ -1,9 +1,9 @@
-# Toolpic Core
+behavior# Toolpic Core
 Core processor of Toolpic, developed for Fridays For Future. This is not the whole project but the core library, that is used by the client and the rendering server.
 
 ## Disclaimer
 
-Before you are able, to understand *ToolpicCore* and the related software around such as the default client or any rendering system, you should be familiar with the following:
+Before you are able to understand *ToolpicCore* and the related software around such as the default client or any rendering system, you should be familiar with the following:
 * [VueJS](https://vuejs.org/v2/guide/)
 * [Vue Components](https://v1.vuejs.org/guide/components.html)
 * [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
@@ -25,7 +25,7 @@ $ npm install toolpic
 # Usage
 
 
-**Please note, that the Toolpic is an UMD module, that is made to be used within an environment that supports UMD modules**
+**Please note, that Toolpic is an UMD module, that is made to be used within an environment that supports UMD modules**
 **If you want to use toolpic independently as a standalone system, you have to import the module into global scope using a** `<script>` **tag**
 
 
@@ -66,7 +66,7 @@ The *toolpic core* system works with pre-compiled *VueComponents* that can be re
 
 ## API
 
-With your constructed `Toolpic` instance you can do certain things, that are more less controlling the *VueComponent* behind it. To understand the behaviour of some methods (e.g. `seekAnimations()`) it is useful to read the whole documentation including the part about structuring a templates.
+With your constructed `Toolpic` instance you can do certain things, that are more less controlling the *VueComponent* behind it. To understand the behavior of some methods (e.g. `seekAnimations()`) it is useful to read the whole documentation including the part about structuring templates.
 
 ### `data`
 
@@ -112,7 +112,7 @@ render.dataset = {
 
 #### `load`
 
-The `load` event will be fired when all (new) resources within your template are loaded. Currently this events is listening for `<img>` and `<image>` elements.
+The `load` event will be fired when all (new) resources within your template are loaded. Currently this event handler is listening for `<img>` and `<image>` elements to finish loading process.
 
 ```javascript
 // Template was initialized or updated before... (whatever)
@@ -144,7 +144,7 @@ More about that below.
 
 #### `seekAnimations(timestamp)`
 
-This method is used to seek alls animations to a given timestamp.
+This method is used to seek all animations to a given timestamp.
 
 #### `kill()`
 
@@ -177,7 +177,7 @@ In detail, this means that the element scales up to a **maximum width** or a **m
 </g>
 ```
 
-This is very cool to use if you have an element that has a dynamic size, you do not know when developing a template (Mostly text elements).
+This is very cool to use if you have an element that has a dynamic size, which yo don't know when developing a template (e.g. text elements).
 
 
 ### v-pos
@@ -206,7 +206,7 @@ The value of `v-scaleimage` is the position of the image relative to its own siz
 
 ## Toolpic Custom Components
 
-Some other routines are solved with *Toolpic Vue Custom Components*. As the directives, they are shipped trough the `toolpic` core system too. They also are provided by `SuperTemplate` which you should use to extend from by default.
+Some other routines are solved with *Toolpic Vue Custom Components*. As the directives, they are shipped through the `toolpic` core system too. They also are provided by `SuperTemplate` which you should use to extend from by default.
 
 Anyway, the *Toolpic Vue Custom Components* also can be imported manually from `toolpic` module:
 ```javascript
@@ -216,7 +216,7 @@ import { VueComponents } from 'toolpic';
 
 ### Multline Text
 
-Often, you have a an array of text lines that need to be formatted correctly. Because SVG does not offer any clean solution, you would need to create a Vue `v-for` loop each time that handles the padding, margin, line height and all the other stuff.
+Often, you have an array of text lines that need to be formatted correctly. Because SVG does not offer any clean solution, you would need to create a Vue `v-for` loop each time that handles the padding, margin, line height and all the other stuff.
 
 To automate this routine, you can use the `<multiline-text>` component. Here, you can pass everything you need just using attributes.
 
@@ -243,20 +243,20 @@ import { VueHelpers } from 'toolpic';
 
 ### textToMultilineFormat()
 
-This method takes a given multiline text (Array) to a specific graphically ratio. That means, you do not have to care the user about when to set a linebreak to fit in perfectly into a 1:1 or 16:9 image. For example, it is used within the `Quote` template in which the typed quote has to fit into the image perfectly and a user is not abled to decice the linebreaks while writing the quote.
+This method takes a given multiline text (Array) to a specific graphically ratio. That means, you do not have to care the user about when to set a linebreak to fit in perfectly into a 1:1 or 16:9 image. For example, it is used within the `Quote` template in which the typed quote has to fit into the image perfectly and a user is not able to devide the linebreaks while writing the quote.
 
 ```javascript
-textToMultilineFormat('This is a very long text that is just written down without thinking about potencial linebreaks', 1, 0.3, true)
+textToMultilineFormat('This is a very long text that is just written down without thinking about potential linebreaks', 1, 0.3, true)
 ```
 
 1. `String` that should be formatted to the given ratio (e.g. `1`)
 2. Ratio the text has to be formatted to
 3. *Chars per line*: Value about the average ratio of each char in the used font (e.g. `0.3` - `0.4`). This depends to the font and is just an average value.
-4. Boolean value, wether a more correct algorithm should be used. Just use `false` if it seems to be to slow when using `true`
+4. Boolean value wether a more correct algorithm should be used. Just use `false` if it seems to be to slow when using `true`
 
 ## Template Structure
 
-**Disclaimer**: What you are doing at this point is not just a part of *toolpic core* (this npm module) but some paradigms are moreless best-practice that are implemented within the default client (Fridays For Future). Because you can program any client using the *toolpic core*, you also could implement your completely own solution for templating (the template sjust need to be valid VueComponents) or a lot of things else.
+**Disclaimer**: What you are doing at this point is not just a part of *toolpic core* (this npm module) but some paradigms are more or less best practice that are implemented within the default client (Fridays For Future). Because you can program any client using the *toolpic core*, you also could implement your completely own solution for templating (the template sjust need to be valid VueComponents) or a lot of things else.
 
 A pre-compiled template that can be given as argument to `Toolpic` looks like the following:
 
@@ -289,21 +289,21 @@ As you can see, the `default` property is just a normal **VueComponent**. Learn 
 
 The `default` property represents a pre-compiled *VueComponent*. Read more about them [here](https://vuejs.org/v2/guide/components.html).
 
-But there are some things about any *Template VueComponent* you shuld keep in mind:
+But there are some things about any *Template VueComponent* you should keep in mind:
 
-**Even if these components are normal VueComponents, some properties or methods are required to access all feautures of Toolpic. E.g,** `__animate()` **within your** `methods` **object is used to animate a** `video` **template. Or the** `data()` **method returns the data controller you are using for templating.** .Read more about that below.
+**Even if these components are normal VueComponents, some properties or methods are required to access all features of Toolpic. E.g,** `__animate()` **within your** `methods` **object is used to animate a** `video` **template. Or the** `data()` **method returns the data controller you are using for templating.** .Read more about that below.
 
 #### `width`
 
-The `width` is used to specifiy the width of any template and while the server rendering process.
+The `width` is used to specify the width of any template and while the server rendering process.
 
 #### `height`
 
-The `height` is used to specifiy the height of any template and while the server rendering process.
+The `height` is used to specify the height of any template and while the server rendering process.
 
 #### `type`
 
-The `type` is mostly used for display purposes and specifies what kind of `format`'s are aviable.
+The `type` is mostly used for display purposes and specifies what kind of `format`'s are available.
 The value currently can be `image` or `video`.
 
 #### `format`
@@ -318,11 +318,11 @@ Depending on your `type`, possible values are:
 
 #### `alias`
 
-The `alias` property is just any string, that will be used as an alias for the current template. This is necessary because in some applications you would group two templates together moreless as "one template" because they are just different in format/ratio (such as 1:1 vs. 16:9). In this cases you need an additional name for each template.
+The `alias` property is just any string, that will be used as an alias for the current template. This is necessary because in some applications you would group two templates together more or less as *"one template"* because they are just different in format/ratio (such as 1:1 vs. 16:9). In these cases you need an additional name for each template.
 
 #### `video`
 
-The `video` object contains additional properties that are used for templates of `type`: `video` to specify rendering process such as `frameRate` or encoding paremeters.
+The `video` object contains additional properties that are used for templates of `type`: `video` to specify rendering process such as `frameRate` or encoding parameters.
 Looks like the following:
 
 ```javascript
@@ -367,7 +367,7 @@ A field object looks like the following:
 
 #### `smartActions`
 
-The `smartActions` array contains descriptors that describe which properties of the data controller can be attached using *Smart Actions*. *Smart Actions* are the optional elements that popup on your client when you long-hold the preview on touch screen. **Attention**: This property is not fully redesigned for the new API, yo it is not that flexible and modular as you expect when looking at `fields`. Documentation is following...
+The `smartActions` array contains descriptors that describe which properties of the data controller can be attached using *Smart Actions*. *Smart Actions* are the optional elements that popup on your client when you long-hold the preview on touch screen. **Attention**: This property is not fully redesigned for the new API. You should note, that it is not that flexible and modular as you expect when looking at `fields`. Documentation is following...
 
 ### Templating
 
@@ -395,7 +395,7 @@ For example, a template, using a `.vue` SFC looks like the following:
 </style>
 
 <script>
-// Import SuperTemplate to provide functionallity from Toolpic Directives, Custom Components and Helpers within our template
+// Import SuperTemplate to provide functionality from Toolpic Directives, Custom Components and Helpers within our template
   import { SuperTemplate } from 'toolpic';
 
   export default {
@@ -506,8 +506,8 @@ Our Field Component could look like the following (`.vue` SFC):
 #### Sounds weird?
 
 Maybe, the modular system with Vue SFC's and everything is not that easy to understand when you're not familiar with front-end development tools as Vue or webpack. If you are not completely understanding the workflow and the dependencies:
-* Have a look at **Vue.js Offical Documentation**: [Vue Basics](https://vuejs.org/v2/guide/), [Vue Components](https://v1.vuejs.org/guide/components.html), [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
-* Have a look at some templates within ur FridaysForFuture Toolpic client (recommended). The `.vue` files there will explain a lot own their own.
+* Have a look at **Vue.js offical documentation**: [Vue Basics](https://vuejs.org/v2/guide/), [Vue Components](https://v1.vuejs.org/guide/components.html), [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
+* Have a look at some templates within our FridaysForFuture Toolpic client (recommended). The `.vue` files there will explain a lot own their own.
 * Ask us
 
 ### Animate a video
