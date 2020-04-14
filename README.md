@@ -4,10 +4,11 @@ Core processor of Toolpic, developed for Fridays For Future. This is not the who
 ## Disclaimer
 
 Before you are able to understand *ToolpicCore* and the related software around such as the default client or any rendering system, you should be familiar with the following:
-* [VueJS](https://vuejs.org/v2/guide/)
-* [Vue Components](https://v1.vuejs.org/guide/components.html)
-* [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
-* [Webpack](https://webpack.js.org)
+
+- [VueJS](https://vuejs.org/v2/guide/)
+- [Vue Components](https://v1.vuejs.org/guide/components.html)
+- [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
+- [Webpack](https://webpack.js.org)
 
 ## Project Structure
 
