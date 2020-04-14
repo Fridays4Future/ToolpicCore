@@ -1,4 +1,4 @@
-# Toolpic Core
+µ# Toolpic Core
 Core processor of Toolpic, developed for Fridays For Future. This is not the whole project but the core library, that is used by the client and the rendering server.
 
 ## Disclaimer
@@ -9,6 +9,9 @@ Before you are able, to understand *ToolpicCore* and the related software around
 * [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
 * [Webpack](https://webpack.js.org)
 
+## Structure
+
+![Dependency Graph](docs/Dependency_Graph.svg)
 
 
 ## Install
@@ -17,11 +20,15 @@ Before you are able, to understand *ToolpicCore* and the related software around
 $ npm install toolpic
 ```
 
-# Structure
+
+
+# Usage
 
 
 **Please note, that the Toolpic is an UMD module, that is made to be used within an environment that supports UMD modules**
 **If you want to use toolpic independently as a standalone system, you have to import the module into global scope using a** `<script>` **tag**
+
+
 ### Example
 ```javascript
 import * as Toolpic from 'toolpic';
@@ -432,7 +439,7 @@ For example, a template, using a `.vue` SFC looks like the following:
 
 ### Field Components
 
-If you describe a field using a *field descriptor object* within the `fields` array, you have to set the `component` property. This should be a *Field Component*, but what is such a *Field Component*? At the end, a *Field Component* is just a valid *VueComponent* that is interacting with your client. The client implementation of FridaysForFuture also provides a `SuperComponent` that you extend when creating your own Field Component. This is recommended because this `SuperComponent` just handles some basic thing such as an easy updating communication to the client. Basically your component should emit an `update` event containing the `key` and `value` you want to update on any Toolpic instance (client-side implementation required, of course). Because your component is designed to be used not just for **one specific key** of a template but to be used for any amount of different templates controlling any possible key, the component does not know which `key` should be emitted if you do not give the trough `params` when mounting the component (on client-side of course). To avoid that we have to implement this logic each time we create a new Field Component, there is a very cool `SuperComponent` that handles this using `$__key` as property/attribute. The Fridays For Future Toolpic implementation uses this property when mounting a component, and we recommend to use the same. The `SuperComponent.vue` can be found within the default client (FridaysForFuture GitHub Repo) but you also can just have a look here:
+If you describe a field using a *field descriptor object* within the `fields` array, you have to set the `component` property. This should be a *Field Component*, but what is such a *Field Component*? At the end, a *Field Component* is just a valid *VueComponent* that is interacting with your client. The client implementation of FridaysForFuture also provides a `SuperComponent` that you extend when creating your own Field Component. This is recommended because this `SuperComponent` just handles some basic thing such as an easy updating communication to the client. Basically your component should emit an `update` event containing the `key` and `value` you want to update on any Toolpic instance (client-side implementation required, of course). Because your component is designed to be used not just for **one specific key** of a template but to be used for any amount of different templates controlling any possible key, the component does not know which `key` should be emitted if you do not give the trough `params` when mounting the component (on client-side of course). To avoid that we have to implement this logic each time we create a new Field Component, there is a very cool `SuperComponent` that handles this using `$__key` as property/attribute. The Fridays For Future Toolpic implementation uses this property when mounting a component, and we recommend to use the same. The `SuperComponent.vue` can be found within the default client but you also can just have a look here:
 
 ```javascript
 export default {
@@ -451,14 +458,14 @@ export default {
 }
 ```
 
-With basic knowlege of javascript and VueJS, the benefit is clear: When we **extend** our Field Component with this *Super Component*, we just have to **set** the `value` property and the `update` event will be fired. Of course, the client has to bind the `$__key` property when mounting the component. And of course, the client has to listen to the `update` event.
+With basic knowledge of JS and Vue, the benefit is clear: When we **extend** our Field Component with this *Super Component*, we just have to **set** the `value` property and the `update` event will be fired. Of course, the client has to bind the `$__key` property when mounting the component. And of course, the client has to listen to the `update` event.
 
 The implementation in FridaysForFuture's client is (simplified) the following:
 
 
 ```html
 <div v-for="fields in fields" >
-  <component v-bind:is="field.component" v-bind="Object.assign(field.props, { $__key: field.key })" ref="fields"></component>
+  <component v-bind:is="field.component" v-bind="Object.assign(field.props, { $__key: field.key })" ref="fieldComponents"></component>
 </div>
 ```
 
@@ -498,8 +505,8 @@ Our Field Component could look like the following (`.vue` SFC):
 
 #### Sounds weird?
 
-Yes, this modular structure is maybe a little bit confusing. If you are not completely understanding the workflow and the dependencies:
-* Have a look at Vue.js offical documentation: [Vue Basics](https://vuejs.org/v2/guide/), [Vue Components](https://v1.vuejs.org/guide/components.html), [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
+Maybe, the modular system with Vue SFC's and everything is not that easy to understand when you're not familiar with front-end development tools as Vue or webpack. If you are not completely understanding the workflow and the dependencies:
+* Have a look at **Vue.js Offical Documentation**: [Vue Basics](https://vuejs.org/v2/guide/), [Vue Components](https://v1.vuejs.org/guide/components.html), [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
 * Have a look at some templates within ur FridaysForFuture Toolpic client (recommended). The `.vue` files there will explain a lot own their own.
 * Ask us
 
@@ -521,7 +528,7 @@ export default {
   methods: {
     __animate() {
       const instance1 = animejs({
-          // This reference should be set by the template 
+          // This reference should be set by the template
           targets: this.$refs.element1,
           keyframes: [
             {
