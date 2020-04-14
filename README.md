@@ -9,9 +9,9 @@ Before you are able to understand *ToolpicCore* and the related software around 
 * [Vue Single File Components](https://vuejs.org/v2/guide/single-file-components.html)
 * [Webpack](https://webpack.js.org)
 
-## Structure
+## Project Structure
 
-![Dependency Graph](docs/Dependency_Graph.svg)
+![Dependency Graph](https://dev.maurice-conrad.eu/ToolpicCore/docs/Dependency_Graph.svg)
 
 
 ## Install
