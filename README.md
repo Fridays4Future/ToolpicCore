@@ -11,7 +11,7 @@ Before you are able, to understand *ToolpicCore* and the related software around
 
 ## Structure
 
-![Dependency Graph](docs/Dependency_Graph.svg)
+![Dependency Graph](https://raw.githubusercontent.com/MauriceConrad/ToolpicCore/master/docs/Dependency_Graph.svg)
 
 
 ## Install
