@@ -2,3 +2,7 @@
 
 webpack.config.js
 src
+docs/Dependency_Graph.afdesign
+docs/Dependency_Graph.pdf
+docs/Dependency_Graph.svg
+docs/Dependency_Graph_Production.afdesign
