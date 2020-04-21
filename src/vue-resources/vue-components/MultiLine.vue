@@ -2,7 +2,7 @@
   <g>
     <g v-for="line in lines" v-bind:style="Object.assign(styleObj)">
       <g v-bind:style="{ 'transform-origin': line.center.x + 'px ' + line.center.y + 'px', transform: 'rotate(' + rotates[line.i] + 'deg)' }">
-        <rect v-bind:x="line.x" v-bind:y="line.y" v-bind:height="line.height" v-bind:width="line.width" v-bind:style="{ fill: background }" v-bind:data-x="line.center.x" v-bind:data-y="line.center.y" />
+        <rect v-if="background != 'none'" v-bind:x="line.x" v-bind:y="line.y" v-bind:height="line.height" v-bind:width="line.width" v-bind:style="{ fill: background }" v-bind:data-x="line.center.x" v-bind:data-y="line.center.y" />
         <text v-bind:x="line.x + offset[3]" v-bind:y="line.y + offset[0]" style="alignment-baseline: hanging;" letter-spacing="0">
           {{ line.text }}
         </text>

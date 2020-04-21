@@ -1,6 +1,6 @@
 {
   "name": "toolpic",
-  "version": "0.5.7",
+  "version": "0.5.9",
   "description": "Toolpic core",
   "main": "lib/toolpic.esm.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "vue": "^2.6.11"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/MauriceConrad/ToolpicCore.git"
+    "type": "git",
+    "url": "https://github.com/MauriceConrad/ToolpicCore.git"
   }
 }

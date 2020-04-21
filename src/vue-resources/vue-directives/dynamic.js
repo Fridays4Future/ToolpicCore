@@ -46,12 +46,16 @@ const dynamicDirective = {
     dynamicDirective.update(el, binding);
   },
   update: function (el, binding) {
+
+
+    const boundingEl = binding.value ? ("tagName" in binding.value ? binding.value : (document.querySelector(binding.value) || el)) : el;
+
     setTimeout(() => {
 
       const width = el.getAttributeNS(null, "data-dynamic-width");
       const height = el.getAttributeNS(null, "data-dynamic-height");
 
-      const bounding = el.getBBox();
+      const bounding = boundingEl.getBBox();
 
       // Required scales to reach max width / height
       const scales = {

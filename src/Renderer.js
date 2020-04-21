@@ -23,6 +23,7 @@ for (var componentKey in components) {
 
 export default class Renderer extends EventEmitter {
   constructor(componentModuleNameSpace) {
+
     super();
 
     //this.__template = template;
@@ -70,6 +71,24 @@ export default class Renderer extends EventEmitter {
     })).then(() => {
       this.emit("load");
     });
+  }
+  fixSVGIussues(key) {
+    const emptyValues = {
+      'string': ''
+    };
+
+    const value = this.data[key].__value;
+
+    const dataType = typeof value;
+    if (dataType in emptyValues) {
+      this.data[key] = emptyValues[dataType];
+      setTimeout(() => {
+        this.data[key] = value;
+      });
+    }
+    else {
+      console.error("No empty value registered :(");
+    }
   }
   __initProxy() {
     const self = this;

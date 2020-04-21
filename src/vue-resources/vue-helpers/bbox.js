@@ -1,6 +1,6 @@
-export default function bbox(selector) {
+export default function bbox(target) {
   try {
-    const target = this.$el.querySelector(selector);
+    //const target = this.$el.querySelector(selector);
     const box = target.getBBox();
     return Object.assign(box, {
       get top() {
