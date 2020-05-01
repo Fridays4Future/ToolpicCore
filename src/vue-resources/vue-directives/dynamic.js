@@ -65,8 +65,11 @@ const dynamicDirective = {
 
       //console.log(el, bounding.width, bounding.height);
 
-      // Scale to smaller scale (to prevent oversizing)
-      el.style.transform = 'scale(' + Math.min(scales.x, scales.y) + ')';
+      const scale = Math.min(scales.x, scales.y);
+      if (scale > 0) {
+        // Scale to smaller scale (to prevent oversizing)
+        el.style.transform = 'scale(' + scale + ')';
+      }
     });
 
 

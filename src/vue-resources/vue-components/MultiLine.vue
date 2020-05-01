@@ -105,7 +105,7 @@
       },
       bounding() {
         const width = Math.max(...this.lineBoundings.map(box => box.width));
-        const height = this.lineBoundings.map(box => box.height).reduce((accumulator, height) => accumulator + (height * this.__lineHeight));
+        const height = this.lineBoundings.map(box => box.height).reduce((accumulator, height) => accumulator + (height * this.__lineHeight), 0);
 
         const exampleLine = this.lineBoundings[0];
 

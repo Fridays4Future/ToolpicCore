@@ -1,5 +1,6 @@
-import MultiLine from './MultiLine.vue'
+import MultiLine from './MultiLine.vue';
+import Dynamic from './Dynamic.vue';
 
 //import multilineText from './multiline.js'
 
-export { MultiLine }
+export { MultiLine, Dynamic }

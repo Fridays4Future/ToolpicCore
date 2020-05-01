@@ -48,10 +48,10 @@ export default class Renderer extends EventEmitter {
     this.Vue = instance;
     this.context = instance.$el;
 
-    this.listenForResources();
+    /*this.listenForResources();
     this.on("update", () => {
       this.listenForResources();
-    });
+    });*/
 
 
     if (this.Vue.__animate) {
@@ -62,15 +62,13 @@ export default class Renderer extends EventEmitter {
   }
   listenForResources() {
     const images = new Array().concat(Array.from(this.context.getElementsByTagName("image")), Array.from(this.context.getElementsByTagName("img")));
-    Promise.all(images.map(image => {
+    return Promise.all(images.map(image => {
       return new Promise(function(resolve, reject) {
         image.addEventListener("load", function() {
           resolve(true);
         });
       });
-    })).then(() => {
-      this.emit("load");
-    });
+    }));
   }
   fixSVGIussues(key) {
     const emptyValues = {

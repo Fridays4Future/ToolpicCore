@@ -109,18 +109,17 @@ render.dataset = {
 }
 ```
 
-### Events
+### `listenForResources()`
 
-#### `load`
-
-The `load` event will be fired when all (new) resources within your template are loaded. Currently this event handler is listening for `<img>` and `<image>` elements to finish loading process.
+Use `listenForResources()` to listen for all resources such as images to finish loading.
 
 ```javascript
-// Template was initialized or updated before... (whatever)
-render.on("load", function() {
-  // Now all resources were loaded
+render.listenForResources().then(() => {
+  console.log("All resources finished loading");
 });
 ```
+
+### Events
 
 #### `update` or `set`
 
@@ -164,6 +163,8 @@ import { VueDirectives } from 'toolpic';
 ```
 
 ### v-dynamic
+
+**Note**: `v-dynamic` is deprecated for the most common use cases. Use `<Dynamic>` component instead.
 
 `v-dynamic` is a pretty cool directive that handles a dynamic size of any element you want to.
 In detail, this means that the element scales up to a **maximum width** or a **maximum height** but never gets bigger than any of them.
@@ -214,15 +215,43 @@ Anyway, the *Toolpic Vue Custom Components* also can be imported manually from `
 import { VueComponents } from 'toolpic';
 ```
 
+### Dynamic
 
-### Multline Text
-
-Often, you have an array of text lines that need to be formatted correctly. Because SVG does not offer any clean solution, you would need to create a Vue `v-for` loop each time that handles the padding, margin, line height and all the other stuff.
-
-To automate this routine, you can use the `<multiline-text>` component. Here, you can pass everything you need just using attributes.
+The `<Dynamic>` component does the exact same as the `v-dynamic` directive and is the recommended solution for dynamic sizing elements. Both solutions are doing more or less the same and both will be kept up to date as long as `v-dynamic` is still the better option a some very special use cases. All in all, `<Dynamic>` is much cleaner one, supports relative origins and will never flicker while `v-dynamic` sometimes is flickering because of rounding behavior.
 
 ```xml
-<multiline-text x="30" y="1195" relative="0.5 0.5" padding="0" v-bind:text="description" lineheight="1.1" background="none" css="font-size: 80px; font-family: 'Jost-300'; fill: #fff;"></multiline-text>
+<Dynamic width="1000" height="500" origin="0 0">
+  <!-- Any content here -->
+  <text style="font-size: 200px;" x="100" y="100">
+    Some text that is feared to become too big...
+  </text>
+  <!-- Any content here -->
+</Dynamic>
+```
+
+#### `width`
+
+`width` defines the maximum width of the contained slot.
+
+#### `height`
+
+`height` defines the maximum height of the contained slot.
+
+#### `origin`
+
+`origin` defines the relative `transform-origin` within the bounding box of the slot using two values between `0` - `1`.
+E.g., a total centered position would be `0.5 0.5`.
+
+**Note:** When using relative `origin` the first time with text, it may seems inaccurate. This is just because the bounding box of a `<text>` element will overlap your `x` and `y` coordinates by a factor depending on the used font. Because this is always a *small factor*, it will just confuse you if you are scaling up or down with very high deltas. Generally, this factor could be tricked out by setting the value to something close to your intention value (`0` or `1`) such as `0.1/0.2` or `0.9/0.8`. But mostly, this is harmless.
+
+### MultiLine
+
+Often, you have an array of text lines that needs to be formatted correctly. Because SVG does not offer any clean solution, you would need to create a Vue `v-for` loop each time that handles the padding, margin, line height and all the other stuff.
+
+To automate this routine, you can use the `<MultiLine>` component. Here, you can pass everything you need just using attributes.
+
+```xml
+<MultiLine x="30" y="1195" relative="0.5 0.5" padding="0" align="center" v-bind:text="['Line 1', 'Line 2']" lineheight="1.1" background="none" css="font-size: 80px; font-family: 'Jost'; font-weight: 700; fill: #fff;"></MultiLine>
 ```
 
 * `relative`: Two values between `0-1` that are describing the origin point that is used to set the element#s position (`0.5 0.5` = *centered*)
@@ -230,6 +259,7 @@ To automate this routine, you can use the `<multiline-text>` component. Here, yo
 * `text`: Array containing all lines
 * `background`: Background color of rect
 * `padding`: Padding to background rect
+* `align`: Inner align of the text
 * `css`: Stylesheet for the `<text>` element behind the magic
 
 
