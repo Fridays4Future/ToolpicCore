@@ -12,7 +12,7 @@
 </template>
 
 <script type="text/javascript">
-  import { textInfo } from 'VueHelpers'
+  import { textInfo } from 'VueHelpers';
 
   export default {
     name: "multiline-text",
