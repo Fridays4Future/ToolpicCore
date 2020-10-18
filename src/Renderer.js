@@ -26,16 +26,9 @@ export default class Renderer extends EventEmitter {
 
     super();
 
-    //this.__template = template;
     this.__component = componentModuleNameSpace;
     this.__init();
     this.__initProxy();
-    /*this.loadDoc(docIndex).then(() => {
-      // Create 'load' event for beeing fully initialized
-      this.emit("load");
-      // Force an Vue update (because fonts now loaded)
-      this.Vue.$forceUpdate();
-    });*/
   }
   __init() {
     const self = this;
@@ -47,12 +40,6 @@ export default class Renderer extends EventEmitter {
 
     this.Vue = instance;
     this.context = instance.$el;
-
-    /*this.listenForResources();
-    this.on("update", () => {
-      this.listenForResources();
-    });*/
-
 
     if (this.Vue.__animate) {
       this.animations = this.Vue.__animate();
