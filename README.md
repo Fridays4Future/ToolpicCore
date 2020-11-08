@@ -442,7 +442,7 @@ For example, a template, using a `.vue` SFC looks like the following:
         // -> animate the template here
       },
       // ... any additional methods we want to access in our template context
-    }
+    },
     directives: {
       // ... any additional vue directives we want to use within our component
     },
