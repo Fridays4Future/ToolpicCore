@@ -451,7 +451,7 @@ For example, a template, using a `.vue` SFC looks like the following:
     }
   }
   export const width = "1200";
-  export const width = "1200";
+  export const height = "1200";
   export const type = "image";
   export const format = "jpg";
   export const alias = "Instagram";
