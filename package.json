@@ -1,6 +1,6 @@
 {
   "name": "toolpic",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Toolpic core",
   "main": "lib/toolpic.esm.js",
   "scripts": {
@@ -27,6 +27,7 @@
   "author": "Maurice Conrad",
   "license": "ISC",
   "dependencies": {
+    "simplify-js": "^1.2.4",
     "vue": "^2.6.11"
   },
   "repository": {

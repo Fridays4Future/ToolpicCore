@@ -61,6 +61,10 @@ const render = new Toolpic(templateModuleNameSpace);
 // Ready to use
 ```
 
+**IMPORTANT**
+
+The `templateModuleNameSpace` needs to be a *real* name space of a pre-compiled VueComponent, **not** just the `default` export. So if you import the component using `import` statement, make sure that you import `*`.
+
 The *toolpic core* system works with pre-compiled *VueComponents* that can be rendered using the `render()` function. So, note:
 * Each template **needs to be** a valid *VueComponent* that is pre-compiled.
 * Because we're normally using `.vue` *Single File Components* as templates, the template object looks like a *ModuleNameSpaceObject* and the component lives on the `default` property.
