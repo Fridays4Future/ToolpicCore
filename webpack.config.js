@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: './src/main.js'
   },
@@ -80,7 +80,7 @@ const config = {
 }
 
 const configWeb = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: './src/main.js'
   },

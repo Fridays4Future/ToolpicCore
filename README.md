@@ -416,9 +416,9 @@ For example, a template, using a `.vue` SFC looks like the following:
 ```html
 <template>
   <!-- The <svg> element is the root element of our component but theoretically, you could also use any valid html element instead -->
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
     <!-- Here, we create a circle element and bind the 'r' attribute to the `radius` property of the component-->
-    <circle cx="600" cy="600" v-bind:r="radius"/>
+    <circle cx="540" cy="540" v-bind:r="radius"/>
   </svg>
 </template>
 
@@ -454,8 +454,8 @@ For example, a template, using a `.vue` SFC looks like the following:
       // ... any additional child vue components we want to use within our component
     }
   }
-  export const width = "1200";
-  export const height = "1200";
+  export const width = "1080";
+  export const height = "1080";
   export const type = "image";
   export const format = "jpg";
   export const alias = "Instagram";
